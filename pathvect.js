@@ -37,13 +37,13 @@ this.applyForce = function(force){
 	this.acceleration.add(this.f);
 }
 //draws a representation of posision vector on canvas
-this.render = function(x, y, r, g, b) {
+this.render = function(x, y, vx, vy, r, g, b) {
     //translate(width /2, height / 2);
 	//rotate(PI)
 	
 	stroke(r, g, b);
 	this.oldpos.set(x,y);
-	line(this.oldpos.x, this.oldpos.y, this.posision.x, this.posision.y);
+	bezier(this.oldpos.x, this.oldpos.y, vx, vy, this.posision.x, this.posision.y, this.velocity.x, thit.velocity.y);
 			
 		//fill(100);
 		//translate(this.mousevect.x, this.mousevect.y);
