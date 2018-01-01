@@ -1,17 +1,24 @@
-function RaceCar() {
-    
-	this.pos = createVector(width /2, height / 2);
-    this.r = 10;
+function car (initPos, initVel) {
+	
+	this.pos = new p5.Vector(initPos.x, initPos.y);
+	this.vel = new p5.Vector(initVel.x, initVel.y);
+	this.R = 10;
     this.heading = PI;
     
-    this.render = function() {
-        translate(this.pos.x, this.pos.y);
-        rotate(this.heading);
-        triangle(-this.r, this.r, this.r, this.r, 0, -this.r);    
+    this.show = function() {
+        //translate(this.pos.x, this.pos.y);
+        //rotate(this.heading);
+        triangle(-this.R, this.R, this.R, this.R, 0, -this.R);    
     
-    }        
-   this.turn = function(angle){
-        this.heading += angle;
-    }
-          
+    };
+	
+    this.turn = function(angle){
+        this.heading += 10;
+    };
+
+	this.update = function () {
+		
+	};
+
+	
 }

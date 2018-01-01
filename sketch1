@@ -1,0 +1,42 @@
+function setup() {
+	createCanvas (800, 600);
+
+	translate(width/2, height/2); 
+	this.mousevect = new p5.Vector(mouseX, mouseY);
+	this.mycar = new car(new p5.Vector(100, 200), 
+				  new p5.Vector(100, 200));
+	
+	this.mypathvect = new pathVect(new p5.Vector(width/2, height/2), 
+						new p5.Vector(200, 100), 
+						new p5.Vector(100, 200), 
+						this.mousevect);
+}
+
+function draw() {
+	let cx = 80, cy = 60;
+	let x = 0, y = 0;
+	let dx = width / cx, dy = height / cy;
+
+	background(255);
+	noFill();
+	stroke('red');
+
+	for (i = 0; i < cx + 1; i++) {
+		
+		line(i * dx, 0, i * dx, height);
+		// verticle lines...
+		
+	}
+
+	for (j = 0; j < cy; j++) {
+		
+		line (0, j * dy, width, j * dy);
+		// horizontal lines...
+		
+	}
+
+	mycar.show();
+	mypathvect.show();
+	mypathvect.update();
+			
+}
