@@ -1,5 +1,5 @@
 var pathvect1 = [];
-var numberOfPathSegments = 72;
+var numberOfPathSegments = 1;
 var pathvect1FirstPos = new p5.Vector(-100, 0);
 
 function setup() {
@@ -20,7 +20,7 @@ function draw() {
 	
 	for (var i = 0; i < pathvect1.length; i++){
 		if (i === 0){
-			pathvect1[i].render(0,0, 0, 0, 0);
+			pathvect1[i].render(0, 0, 0, 0, 0);
 		}
 			
 		else {
