@@ -1,16 +1,17 @@
 function Pathvect(mass, oldpos) {
-	this.posision = new p5.Vector(oldpos.x, oldpos.y);
-	this.velocity = new p5.Vector(oldpos.x, oldpos.y);
-	this.controlPoint1 = new p5.Vector(oldpos.x, oldpos.y);
-    this.controlPoint2 = new p5.Vector(oldpos.x, oldpos.y);
-    this.acceleration = new p5.Vector(oldpos.x, oldpos.y);
-	this.mousevect = new p5.Vector(mouseX, mouseY);
-	this.newpos = new p5.Vector(oldpos.x, oldpos.y);
-	this.oldpos = new p5.Vector(oldpos.x, oldpos.y);
-	this.oldpos.set(oldpos);
+	this.mousevect 		= new p5.Vector(mouseX, mouseY);
+	this.oldpos 		= new p5.Vector(oldpos.x, oldpos.y);
+	this.vectHeading 	= new p5.Vector(0, 0);
+	this.posision		= new p5.Vector(0, 0);
+	this.velocity 		= new p5.Vector(0, 0);
+	this.controlPoint1 	= new p5.Vector(0, 0);
+    this.controlPoint2 	= new p5.Vector(0, 0);
+    this.acceleration 	= new p5.Vector(0, 0);
+	this.newpos 		= new p5.Vector(0, 0);
+	//this.oldpos.set(oldpos);
 	this.mass = mass;
 	this.maxdist = 10;
-	this.vectHeading = new p5.Vector(oldpos.x, oldpos.y)
+	
 
 //updates the vector posisions    
 this.update = function(){
@@ -37,24 +38,32 @@ this.applyForce = function(force){
 //draws a representation of posision vector on canvas
 this.render = function(x, y, r, g, b) {
     this.oldpos.set(x, y);
-    this.controlPoint1.set(this.velocity.x, this.velocity.y);
-    this.controlPoint1.mult(10);
+    this.controlPoint1.set(this.vectHeading.x, this.vectHeading.y);
+    this.controlPoint1.mult(this.oldpos.dist(this.posision));
     
     this.controlPoint2.set(this.posision.x, this.posision.y);
     this.controlPoint2.sub(this.controlPoint1);
-    //this.controlPoint1.sub(this.posision);
+    this.controlPoint1.sub(this.oldpos.copy());
 	
     stroke(100, g, b);
-    line(this.posision.x, this.posision.y, this.controlPoint2.x, this.controlPoint2.y);
+    line(	
+				this.posision.x, 		this.posision.y, 
+		 		this.controlPoint2.x, 	this.controlPoint2.y
+		);
     
     stroke(r, 200, b);
-    line(this.oldpos.x, this.oldpos.y, this.controlPoint1.x, this.controlPoint1.y);
-    
-    //stroke(r, g, 150);
-    //line(this.oldpos.x, this.oldpos.y, this.posision.x, this.posision.y);
-    
+    line(	
+				this.oldpos.x, 			this.oldpos.y, 
+		 		this.controlPoint1.x, 	this.controlPoint1.y
+		);
+          
     stroke(200, g, 150);
-    bezier(this.oldpos.x, this.oldpos.y, this.controlPoint1.x, this.controlPoint1.y, this.posision.x, this.posision.y, this.controlPoint2.x, this.controlPoint2.y);
+    bezier(		
+				this.oldpos.x, 			this.oldpos.y,
+				this.controlPoint1.x, 	this.controlPoint1.y, 
+		   		this.controlPoint2.x, 	this.controlPoint2.y,
+				this.posision.x, 		this.posision.y
+		  );
     
 			
 		//fill(100);
