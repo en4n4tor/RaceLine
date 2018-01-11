@@ -8,11 +8,9 @@ function Pathvect(mass, oldpos) {
     this.controlPoint2 	= new p5.Vector(0, 0);
     this.acceleration 	= new p5.Vector(0, 0);
 	this.newpos 		= new p5.Vector(0, 0);
-	//this.oldpos.set(oldpos);
 	this.mass = mass;
 	this.maxdist = 10;
 	
-
 //updates the vector posisions    
 this.update = function(){
 	this.vectHeading.set(this.velocity);
@@ -23,12 +21,10 @@ this.update = function(){
 	this.applyForce(this.mousevect);
 	this.velocity.add(this.acceleration);
 	this.velocity.mult(.1);
-	print(this.velocity.heading())
-	
 	this.posision.add(this.velocity);
 	this.acceleration.mult(0);
-		
 }
+
 //used in update function to change velocity vector
 this.applyForce = function(force){
 	this.f = force.copy();
