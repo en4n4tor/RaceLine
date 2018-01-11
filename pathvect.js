@@ -2,7 +2,7 @@ function Pathvect(mass, oldpos) {
 	this.mousevect 		= new p5.Vector(mouseX, mouseY);
 	this.oldpos 		= new p5.Vector(oldpos.x, oldpos.y);
 	this.vectHeading 	= new p5.Vector(0, 0);
-	this.posision		= new p5.Vector(0, 0);
+	this.position		= new p5.Vector(0, 0);
 	this.velocity 		= new p5.Vector(0, 0);
 	this.controlPoint1 	= new p5.Vector(0, 0);
     this.controlPoint2 	= new p5.Vector(0, 0);
@@ -11,17 +11,28 @@ function Pathvect(mass, oldpos) {
 	this.mass = mass;
 	this.maxdist = 10;
 	
+<<<<<<< HEAD
 //updates the vector posisions    
+=======
+
+//updates the vector positions    
+>>>>>>> b645e3bf377541ddb901a999c329c892e8fa6445
 this.update = function(){
 	this.vectHeading.set(this.velocity);
 	this.vectHeading.normalize();
-	this.newpos.set(this.posision.x, this.posision.y);
+	this.newpos.set(this.position.x, this.position.y);
 	this.mousevect.set(mouseX - width/2, mouseY - height/2);
 	this.mousevect.sub(this.newpos);
 	this.applyForce(this.mousevect);
 	this.velocity.add(this.acceleration);
 	this.velocity.mult(.1);
+<<<<<<< HEAD
 	this.posision.add(this.velocity);
+=======
+	print(this.velocity.heading())
+	
+	this.position.add(this.velocity);
+>>>>>>> b645e3bf377541ddb901a999c329c892e8fa6445
 	this.acceleration.mult(0);
 }
 
@@ -31,19 +42,19 @@ this.applyForce = function(force){
 	this.f.div(this.mass);
 	this.acceleration.add(this.f);
 }
-//draws a representation of posision vector on canvas
+//draws a representation of position vector on canvas
 this.render = function(x, y, r, g, b) {
     this.oldpos.set(x, y);
     this.controlPoint1.set(this.vectHeading.x, this.vectHeading.y);
-    this.controlPoint1.mult(this.oldpos.dist(this.posision));
+    this.controlPoint1.mult(this.oldpos.dist(this.position));
     
-    this.controlPoint2.set(this.posision.x, this.posision.y);
+    this.controlPoint2.set(this.position.x, this.position.y);
     this.controlPoint2.sub(this.controlPoint1);
     this.controlPoint1.sub(this.oldpos.copy());
 	
     stroke(100, g, b);
     line(	
-				this.posision.x, 		this.posision.y, 
+				this.position.x, 		this.position.y, 
 		 		this.controlPoint2.x, 	this.controlPoint2.y
 		);
     
@@ -58,7 +69,7 @@ this.render = function(x, y, r, g, b) {
 				this.oldpos.x, 			this.oldpos.y,
 				this.controlPoint1.x, 	this.controlPoint1.y, 
 		   		this.controlPoint2.x, 	this.controlPoint2.y,
-				this.posision.x, 		this.posision.y
+				this.position.x, 		this.position.y
 		  );
     
 			
@@ -69,7 +80,7 @@ this.render = function(x, y, r, g, b) {
 //resets vectors, called by whenKeyIsPressed in sketch 
 this.resetVect = function(){
 	this.acceleration.mult(0);
-	this.posision.mult(0);
+	this.position.mult(0);
 	this.velocity.mult(0);
 }
 }
